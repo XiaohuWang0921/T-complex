@@ -227,50 +227,23 @@
 				&\Y(n)\arrow{ur}[swap]{\phi^s}
 			\end{tikzcd}\]
 		\end{enumerate}
-		The fillers are subject to the following two axioms:
+		The fillers are subject to the following two axioms, for every $C\in\ASC_n$ centralized:
 		\begin{enumerate}
-			\item For every centralized $C\in\ASC_n$ and every $f:m\to n$ s.t. $C^f$ is also centralized, the following diagram, in particular the lower triangle, commutes:
+			\item For every $f:m\to n$ s.t. $C^f$ is also centralized, the following diagram, in particular the lower triangle, commutes:
 			\begin{equation}\label{pullbackcomp}\begin{tikzcd}
 				&\X(C^f)\arrow[hook]{dd}[swap]{\iota(C^f)}\arrow{rr}{\X(f)}&&\X(C)\arrow[hook]{ld}[swap]{\iota(C)}\arrow{dd}{s}\\
 				&&\Y(n)\arrow{dr}{\phi^s}\\
 				&\Y(m)\arrow{ur}{\Y(f)}\arrow{rr}[swap]{\phi^{s\circ\X(f)}}&&P
 			\end{tikzcd}\end{equation}
 			Summarized in an equation, this just says $\phi^{s\circ\X(f)}=\phi^s\circ\Y(f)$.
-			\item If a centralized simplicial complex $s:\X(C)\to P$ factors through some $t:\X(C)\twoheadrightarrow\Y(m)$, i.e.
-			\begin{equation}\label{factri}
-				\begin{tikzcd}
-					\X(C)\arrow{rr}{s}\arrow{dr}[swap]{t}&&P\\
-					&\Y(m)\arrow{ur}
-				\end{tikzcd}
-			\end{equation}
-			Then the filler must factor through $\F(t)$:
-			\begin{equation}\label{factetra}
-				\begin{tikzcd}
-					\X(C)\arrow{rr}{s}\arrow{dr}{t}\arrow{dddr}[swap]{\iota_C}&&P\\
-					&\Y(m)\arrow{ur}\\\\
-					&\Y(n)\arrow{uu}{\F(t)}\arrow{uuur}[swap]{\phi^s}
-				\end{tikzcd}
-			\end{equation}
+			\item For $c:\X(C)\twoheadrightarrow\Y(m)$ an epic centralized simplicial complex in $\Y(m)$ and $s:\Y(m)\to P$ an $m$-simplex in $P$, then $\phi^{s\circ c}$ factors through $\F(c)$. So the following diagram commutes:
+			\begin{equation}\label{epifac}\begin{tikzcd}
+				\X(C)\arrow[two heads]{r}{c}\arrow[hook]{dr}[swap]{\iota_C}&\Y(m)\arrow{r}{s}&P\\
+				&\Y(n)\arrow[two heads]{u}{\F(c)}\arrow{ur}[swap]{\phi^{s\circ c}}
+			\end{tikzcd}\end{equation}
 		\end{enumerate}
 		As is common with algebraic structures, we shall denote a T-complex simply $(P,\phi)$ simply by its underlying presheaf $P$, whenever the fillers can be inferred from the context. It should be kept in mind though that the fillers are really the more important part of the structure.
 	\end{definition}
-	\begin{remark}
-		Note that the unnamed arrows $\Y(m)\to P$ in the diagrams \ref{factri} and \ref{factetra} need not be identical. Indeed, every simplicial complex $c:\X(C)\to P$ that can be lifted into a simplex $s:\Y(n)\to P$ must per definition factor through the inclusion $\iota_C:\X(C)\to\Y(n)$ (See diagram \ref{Lift}). Hence, requiring both arrows in both diagrams to always be identical would mean requiring lifting simplexes to be unique, which in some cases is true (e.g. Theorem \ref{lift}), but in general a too strict requirement. However, Lemma \ref{unifac} immediately following this gives a sufficient condition under which the two arrows are indeed identical, and thus the factorization unique.
-	\end{remark}
-	\begin{lemma}\label{unifac}
-		Let $(P,\phi)$ be a T-complex, $s:\Y(n)\to P$ a simplex in $P$ and $c:\X(C)\twoheadrightarrow\Y(n)$ an epic centralized simplicial complex in $\Y(n)$ with $C\in\ASC_m$. Then $\phi^{s\circ c}=s\circ\F(c)$, in diagram:
-		\begin{equation}\label{epifac}
-			\begin{tikzcd}
-				\X(C)\arrow[two heads]{r}{c}\arrow[hook]{dr}[swap]{\iota_C}&\Y(n)\arrow{r}{s}&P\\
-				&\Y(m)\arrow[two heads]{u}{\F(c)}\arrow{ur}[swap]{\phi^{s\circ c}}
-			\end{tikzcd}
-		\end{equation}
-	\end{lemma}
-	\begin{proof}
-		Clearly, $s\circ c:\X(C)\to P$ factors through $c:\X(C)\to\Y(n)$, so according to axiom 2 in Definition \ref{TComp}, $\phi^{s\circ c}$ factors through $\F(c)$, i.e. there is some $t:\Y(n)\to P$ s.t. $\phi^{s\circ c}=t\circ\F(c)$. We then only need to show $s=t$:
-		\[s\circ c=\phi^{s\circ c}\circ\iota_C=t\circ\F(c)\circ\iota_C=t\circ c\]
-		Since $c$ is an epimorphism, $s=t$ follows.
-	\end{proof}
 	\begin{definition}[T-complex morphisms and the category of T-complexes]
 		Let $(P,\phi)$ and $(Q,\psi)$ be two T-complexes. A natural transformation $\eta:P\to Q$ is called a \textit{T-complex morphism} if the following diagram, in particular the lower triangle, commutes for every centralized $C\in\ASC_n$ and $s:\X(C)\to P$:
 		\[\begin{tikzcd}
@@ -392,7 +365,7 @@
 			&\K(1)\arrow[hook,shift left=1mm]{ur}{\g_x}\arrow[hook',shift right=1mm]{ur}[swap]{\g_y}\\\\
 			&\Y(n)\arrow[two heads]{uu}{!_{\Y(n)}}\arrow[bend right=30]{uuur}[swap]{s}
 		\end{tikzcd}\]
-		It's not hard to see that both paths $\X(C)\twoheadrightarrow\K(1)\hookrightarrow\K(A)$ in this diagram are equal, and that the unique natural transformation $!_{\X(C)}:\X(C)\twoheadrightarrow\K(1)$ is componentwise surjective ($\X(C)(m)$ is nonempty for every $m\in\N_+$) and hence indeed an epimorphism. So, similar to the situation in Lemma \ref{unifac}, it follows $\g_x=\g_y$, thus $s=\g_x\circ\ !_{\Y(n)}$ is uniquely determined.
+		It's not hard to see that both paths $\X(C)\twoheadrightarrow\K(1)\hookrightarrow\K(A)$ in this diagram are equal, and that the unique natural transformation $!_{\X(C)}:\X(C)\twoheadrightarrow\K(1)$ is componentwise surjective ($\X(C)(m)$ is nonempty for every $m\in\N_+$) and hence indeed an epimorphism. So, it follows that $\g_x=\g_y$, thus $s=\g_x\circ\ !_{\Y(n)}$ is uniquely determined.
 		
 		So we've shown that every simplicial complex in $\K(A)$ has a unique lifting simplex, and by the same reasoning as Theorem \ref{YTComp} it follows that $\K(A)$ can be given a T-complex structure in a unique way and that every natural transformation from some T-complex into $\K(A)$ is a T-complex morphism.
 		
@@ -401,7 +374,7 @@
 			\X(C)\arrow{r}{c}\arrow{dr}[swap]{\iota_C}&\K(A)\arrow{r}{\epsilon}&P\\
 			&\Y(n)\arrow{u}\arrow{ur}[swap]{\phi^c}
 		\end{tikzcd}\]
-		Again, by invoking Lemma \ref{scompK}, we decompose $c$ into $\X(C)\twoheadrightarrow\K(1)\xrightarrow{\g_x}\K(A)$ with some $x\in A$, and by replacing $\K(1)$ with $\Y(1)$, we get the following diagram, which commutes because of Lemma \ref{unifac}:
+		Again, by invoking Lemma \ref{scompK}, we decompose $c$ into $\X(C)\twoheadrightarrow\K(1)\xrightarrow{\g_x}\K(A)$ with some $x\in A$, and by replacing $\K(1)$ with $\Y(1)$, we get the following diagram, which commutes because of (\ref{epifac}):
 		\[\begin{tikzcd}
 			\X(C)\arrow[two heads]{r}\arrow{dr}[swap]{\iota_C}&\Y(1)\arrow[hook]{r}&\K(A)\arrow{d}{\epsilon}\\
 			&\Y(n)\arrow[two heads]{u}[swap]{\Y(!_n)}\arrow{r}[swap]{\phi^c}&P
@@ -577,23 +550,33 @@
 		\end{tikzcd}\]
 		which again obviously commutes since $(C^f)^{\pi^2}$ is also centralized according to Corollary \ref{centerpi}, and $(P,\phi)$ is a T-complex and hence satisfies axiom (\ref{pullbackcomp}).
 		
-		Finally, to prove the second axiom, suppose we have the situation of (\ref{factri}), i.e. a centralized simplicial complex $c:\X(C)\to\Y(k)$, and a $k$-simplex $s:\Y(k)\to P\circ\M(m)$ in the $m$-polyhedral presheaf:
+		Now, to prove the second axiom, suppose we have $c:\X(C)\twoheadrightarrow\Y(k)$ epic and centralized, and a $k$-simplex $s:\Y(k)\to P\circ\M(m)$ in the $m$-polyhedral presheaf:
 		\[\X(C)\xrightarrow{c}\Y(k)\xrightarrow{s}P\circ\M(m)\]
-		We then need to show that (\ref{factetra}) commutes, i.e. the filler of this composition factors through $\F(c):\Y(n)\to\Y(k)$. First, we can factorize $c$ further according to Theorem \ref{lift}:
+		We then need to show that (\ref{epifac}) commutes, i.e. $\phi^{s\circ c}=s\circ\F(c):\Y(n)\to\Y(k)$. First, we can factorize $c$ further according to Theorem \ref{lift}:
 		\[\X(C)\xrightarrow{\iota_C}\Y(n)\xrightarrow{\F(c)}\Y(k)\xrightarrow{s}P\circ\M(m)\]
 		Applying $\tau$ to it, we get the following composition according to Lemma \ref{sigstruct} and Theorem \ref{taubij}:
 		\[\X(C^{\pi^2})\xrightarrow{\iota_{C^{\pi^2}}}\Y(m\times n)\xrightarrow{\id_m\times\F(c)}\Y(m\times k)\xrightarrow{\tau(s)}P\]
-		Now, let $d:\X(C^{\pi^2})\to\Y(m\times k)$ denote the composition of the first two arrows. So far, what we've proven is simply $\tau(s\circ c)=\tau(s)\circ d$, but also $\F(d)=\id_m\times\F(c)$ as the simplex $\Y(m\times n)\to\Y(m\times k)$ that lifts $d$ is unique. So since $(P,\phi)$ is a T-complex, $\phi^{\tau(s)\circ d}=\phi^{\tau(s\circ c)}$ must factor through $\F(d)=\id_m\times\F(c)$, i.e. the following triangle commutes for some $t:\Y(m\times k)\to P$:
+		Now, let $d:\X(C^{\pi^2})\to\Y(m\times k)$ denote the composition of the first two arrows. So far, what we've proven is simply $\tau(s\circ c)=\tau(s)\circ d$, but also $\F(d)=\id_m\times\F(c)$ as the simplex $\Y(m\times n)\to\Y(m\times k)$ that lifts $d$ is unique. Furthermore, we see that $d$ is also epic, because there is the following situation with $\eta\circ d=\epsilon\circ d$ for some presheaf $Q$ and some $\eta,\epsilon:\Y(m\times k)\to Q$:
 		\[\begin{tikzcd}
-			\Y(m\times k)\arrow{r}{t}&P\\
-			\Y(m\times n)\arrow{u}{\id_m\times\F(c)}\arrow{ur}[swap]{\phi^{\tau(s\circ c)}}
+			\X(C^{\pi^2})\arrow{r}{d}&\Y(m\times k)\arrow[shift left=1mm]{r}{\eta}\arrow[shift right=1mm]{r}[swap]{\epsilon}&Q
+		\end{tikzcd}\]
+		Applying $\sigma$ to it yields the following with $\sigma(\eta)\circ c=\sigma(\epsilon)\circ c$:
+		\[\begin{tikzcd}
+			\X(C)\arrow[two heads]{r}{c}&\Y(k)\arrow[shift left=1mm]{r}{\sigma(\eta)}\arrow[shift right=1mm]{r}[swap]{\sigma(\epsilon)}&Q\circ\M(m)
+		\end{tikzcd}\]
+		Since $c$ is epic, we have $\sigma(\eta)=\sigma(\epsilon)$, and further applying $\tau$ to this equation gives $\eta=\epsilon$.
+		
+		Hence, since $(P,\phi)$ is a T-complex and $d:\X(C^{\pi^2})\twoheadrightarrow\Y(m\times k)$ is epic, we have the following commutative triangle:
+		\[\begin{tikzcd}
+			\Y(m\times k)\arrow{r}{\tau(s)}&P\\
+			\Y(m\times n)\arrow{u}{\F(d)=\id_m\times\F(c)}\arrow{ur}[swap]{\phi^{\tau(s\circ c)}}
 		\end{tikzcd}\]
 		Finally, applying $\sigma$ and Lemma \ref{sigstruct} to this triangle gives us what we needed to show:
 		\[\begin{tikzcd}
-			\Y(k)\arrow{r}{\sigma(t)}&P\\
+			\Y(k)\arrow{r}{s}&P\circ\M(m)\\
 			\Y(n)\arrow{u}{\F(c)}\arrow{ur}[swap]{\sigma(\phi^{\tau(s\circ c)})=\psi^{s\circ c}}
 		\end{tikzcd}\]
-		i.e. $\psi^{s\circ c}$ factors through $\F(c)$.
+		i.e. $\psi^{s\circ c} = s\circ \F(c)$.
 	\end{proof}
 	To conclude this section, we take a look at a special class of natural transformations between polyhedral T-complexes, namely those of the form $\id_P*\M(f):P\circ\M(m)\to P\circ\M(l)$, where $*$ is the Godement product, i.e. the horizontal composition of the identity transformation $\id_P:P\to P$ and $\M(f):\M(l)\to\M(m)$ with $f:l\to m$. The goal is to show that these are indeed T-complex morphisms.
 	\begin{lemma}\label{sigexch}
@@ -719,4 +702,5 @@
 		Indeed, it is again easy to check that this in fact uniquely defines $\coprod_i\phi_i$ and that it satisfies all the required axioms, thus making $\coprod_iP_i$ into a T-complex.
 	\end{proof}
 	\subsection{Exponentials}
+	In order to define exponentials (a.k.a. internal homs) in $\TComp$, we start by revisiting a known construction for exponentials in $\PSF$:
 \end{document}
