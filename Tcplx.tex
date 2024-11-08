@@ -21,7 +21,7 @@
 \newcommand{\K}{\mathcal K}
 \newcommand{\g}{\mathfrak g}
 \newcommand{\F}{\mathfrak F}
-\newcommand{\TComp}{\mathrm{TComp}}
+\newcommand{\Tcplx}{\mathrm{Tcplx}}
 \newcommand{\Q}{\mathcal Q}
 \newcommand{\M}{\mathcal M}
 \newenvironment{example}{\begin{proof}[Example]}{\end{proof}}
@@ -217,7 +217,7 @@
 		\[\F(c):=\Y(\g_n^{-1}\circ c_1\circ\g_m)\]
 	\end{definition}
 	It is trivial to show that if $c:\X(C)\twoheadrightarrow\Y(n)$ is an epimorphism, then so is $\F(c):\Y(m)\twoheadrightarrow\Y(n)$, simply because $c=\F(c)\circ\iota_C$. This fact will probably never be used in proofs, but we will nonetheless reference it in our diagrams.
-	\begin{definition}[T-complexes]\label{TComp}
+	\begin{definition}[T-complexes]\label{Tcplx}
 		A \textit{T-complex} consists of an ordered pair $(P,\phi)$ where:
 		\begin{enumerate}
 			\item $P:\Fin_+^\op\to\Set$ is a presheaf over $\Fin_+$;
@@ -253,7 +253,7 @@
 		\end{tikzcd}\]
 		Summarized in an equation, it just says $\eta\circ\phi^s=\psi^{\eta\circ s}$, i.e. that $\eta$ preserves fillers.
 		
-		Clearly, every identity transformation is a T-complex morphism, as well as the composition of two T-complex morphisms. Therefore, the T-complexes and morphisms between them form a category, which shall be denoted by $\TComp$.
+		Clearly, every identity transformation is a T-complex morphism, as well as the composition of two T-complex morphisms. Therefore, the T-complexes and morphisms between them form a category, which shall be denoted by $\Tcplx$.
 	\end{definition}
 	\subsection{Examples for T-complexes and T-complex morphisms}
 	Here we give a couple of important examples for T-complexes and T-complex morphisms that we will encounter again.
@@ -264,7 +264,7 @@
 	\end{definition}
 	It is easy to see that $\K(1)\cong\Y(1)$, and both of which are terminal objects in $\PSF$.
 	\begin{definition}
-		Let $\Q:\PSF\twoheadrightarrow\Set$ be the functor that sends each presheaf $P$ to the set $P(1)$ and each natural transformation $\eta:P\to Q$ to its first component $\eta_1:P(1)\to Q(1)$. By abuse of notation, we shall also sometimes take $\TComp$ to be the domain of $\Q$, i.e. $\Q:\TComp\twoheadrightarrow\Set$.
+		Let $\Q:\PSF\twoheadrightarrow\Set$ be the functor that sends each presheaf $P$ to the set $P(1)$ and each natural transformation $\eta:P\to Q$ to its first component $\eta_1:P(1)\to Q(1)$. By abuse of notation, we shall also sometimes take $\Tcplx$ to be the domain of $\Q$, i.e. $\Q:\Tcplx\twoheadrightarrow\Set$.
 	\end{definition}
 	\begin{definition}[Extended Yoneda-embedding]
 		The domain of the Yoneda-embedding $\Y:\Fin_+\hookrightarrow\PSF$ can indeed be extended to $\Set$, i.e. giving rise to a functor $\Set\hookrightarrow\PSF$, which maps each set $A$ and each $n\in\N_+$ to the set $\Set([n],A)$. By abuse of notation, we shall also denote this functor by $\Y:\Set\hookrightarrow\PSF$, since there is no room for ambiguity. Yoneda-lemma still guarantees that it is fully faithful since $\Fin_+$ is a subcategory of $\Set$, and it is still an embedding since the following composition maps each set $A$ to $\Set([1], A)$, so it is naturally isomorphic to the identity functor through $\g$:
@@ -315,11 +315,11 @@
 		This equality would uniquely determine $\eta:P\to\Y(A)$, and indeed, one may easily check that this gives a well-defined natural transformation.
 	\end{proof}
 	The first example has already been foreshadowed by Theorem \ref{lift}:
-	\begin{theorem}[$\Y(A)$ are T-complexes]\label{YTComp}
+	\begin{theorem}[$\Y(A)$ are T-complexes]\label{YTcplx}
 		For every set $A$, $\Y(A):\Fin_+^\op\to\Set$ can be given a T-complex structure in a unique way, such that any natural transformation from a T-complex $P$ into $\Y(A)$ is also a T-complex morphism.
 	\end{theorem}
 	\begin{proof}
-		For the case of $A=[n]$, theorem \ref{lift} guarantees that every simplicial complex (even non-centralized ones) in $\Y(n)$ has a unique lifting simplex, which can be chosen as fillers. Furthermore, since lifting simplex are unique, both axioms in Definition \ref{TComp} are automatically satisfied, and for the same reason they are also preserved by every natural transformation into $\Y(n)$.
+		For the case of $A=[n]$, theorem \ref{lift} guarantees that every simplicial complex (even non-centralized ones) in $\Y(n)$ has a unique lifting simplex, which can be chosen as fillers. Furthermore, since lifting simplex are unique, both axioms in Definition \ref{Tcplx} are automatically satisfied, and for the same reason they are also preserved by every natural transformation into $\Y(n)$.
 		
 		The general case is completely analogous.
 	\end{proof}
@@ -355,7 +355,7 @@
 		\[c_{1+m}\langle\g_k;f\rangle=c_m(\langle\g_k;f\rangle\circ i^2)=c_m(f)\]
 		Together with equation (\ref{triangle}) above, this gives $c_m(f)=x$, which is what we claimed at the beginning of the paragraph.
 	\end{proof}
-	\begin{theorem}[Constant presheaves are T-complexes]\label{KTComp}
+	\begin{theorem}[Constant presheaves are T-complexes]\label{KTcplx}
 		For every set $A$, $\K(A)$ can be given a T-complex structure in a unique way. Furthermore, every natural transformation $\eta:P\to\K(A)$ from some T-complex $P$ into $\K(A)$, as well as every natural transformation $\epsilon:\K(A)\to P$ from $\K(A)$ into a T-complex $P$, is a T-complex morphism.
 	\end{theorem}
 	\begin{proof}
@@ -367,7 +367,7 @@
 		\end{tikzcd}\]
 		It's not hard to see that both paths $\X(C)\twoheadrightarrow\K(1)\hookrightarrow\K(A)$ in this diagram are equal, and that the unique natural transformation $!_{\X(C)}:\X(C)\twoheadrightarrow\K(1)$ is componentwise surjective ($\X(C)(m)$ is nonempty for every $m\in\N_+$) and hence indeed an epimorphism. So, it follows that $\g_x=\g_y$, thus $s=\g_x\circ\ !_{\Y(n)}$ is uniquely determined.
 		
-		So we've shown that every simplicial complex in $\K(A)$ has a unique lifting simplex, and by the same reasoning as Theorem \ref{YTComp} it follows that $\K(A)$ can be given a T-complex structure in a unique way and that every natural transformation from some T-complex into $\K(A)$ is a T-complex morphism.
+		So we've shown that every simplicial complex in $\K(A)$ has a unique lifting simplex, and by the same reasoning as Theorem \ref{YTcplx} it follows that $\K(A)$ can be given a T-complex structure in a unique way and that every natural transformation from some T-complex into $\K(A)$ is a T-complex morphism.
 		
 		To show that a natural transformation $\epsilon:\K(A)\to P$ into some T-complex $P$ also preserves fillers, consider some simplicial complex $c:\X(C)\to\K(A)$ with $C\in\ASC_n$. We need to show the following diagram, in particular the right triangle, commutes:
 		\[\begin{tikzcd}
@@ -380,27 +380,27 @@
 			&\Y(n)\arrow[two heads]{u}[swap]{\Y(!_n)}\arrow{r}[swap]{\phi^c}&P
 		\end{tikzcd}\]
 	\end{proof}
-	Because of Theorem \ref{YTComp} and \ref{KTComp}, we shall consider the functors $\Y$ and $\K$ to take values in $\TComp$ instead of $\PSF$, i.e. $\Y,\K:\Set\hookrightarrow\TComp$, since there is hardly any ambiguity.
+	Because of Theorem \ref{YTcplx} and \ref{KTcplx}, we shall consider the functors $\Y$ and $\K$ to take values in $\Tcplx$ instead of $\PSF$, i.e. $\Y,\K:\Set\hookrightarrow\Tcplx$, since there is hardly any ambiguity.
 	\begin{theorem}\label{adjQT}
-		The restricted version of $Q$, i.e. $\Q:\TComp\twoheadrightarrow\Set$ also has both a left and a right adjoint, with $\K:\Set\hookrightarrow\TComp$ being the left adjoint and $\Y:\Set\hookrightarrow\TComp$ the right adjoint.
+		The restricted version of $Q$, i.e. $\Q:\Tcplx\twoheadrightarrow\Set$ also has both a left and a right adjoint, with $\K:\Set\hookrightarrow\Tcplx$ being the left adjoint and $\Y:\Set\hookrightarrow\Tcplx$ the right adjoint.
 	\end{theorem}
 	\begin{proof}
 		We already know from Theorem \ref{adjQPSF} of the adjoints of $\Q:\PSF\to\Set$, and of the following two natural isomorphisms:
 		\[\PSF(\K(A),P)\cong\Set(A,P(1))\qquad\Set(P(1),A)\cong\PSF(P,\Y(A))\]
-		We also have the following equality between sets from Theorem \ref{YTComp}:
-		\[\PSF(P,\Y(A))=\TComp(P,\Y(A))\]
-		as well as the following from Theorem \ref{KTComp}:
-		\[\PSF(\K(A),P)=\TComp(\K(A),P)\]
+		We also have the following equality between sets from Theorem \ref{YTcplx}:
+		\[\PSF(P,\Y(A))=\Tcplx(P,\Y(A))\]
+		as well as the following from Theorem \ref{KTcplx}:
+		\[\PSF(\K(A),P)=\Tcplx(\K(A),P)\]
 		whenever $P:\Fin_+^\op\to\Set$ is a T-complex. Putting them all together, we get the following natural isomorphisms:
-		\[\TComp(\K(A),P)\cong\Set(A,P(1))\qquad\Set(P(1),A)\cong\TComp(P,\Y(A))\]
-		which means $\Q:\TComp\twoheadrightarrow\Set$ has the same adjunction property as $\Q:\PSF\twoheadrightarrow\Set$.
+		\[\Tcplx(\K(A),P)\cong\Set(A,P(1))\qquad\Set(P(1),A)\cong\Tcplx(P,\Y(A))\]
+		which means $\Q:\Tcplx\twoheadrightarrow\Set$ has the same adjunction property as $\Q:\PSF\twoheadrightarrow\Set$.
 	\end{proof}
-	\begin{definition}[Global elements in $\PSF$ and $\TComp$]
+	\begin{definition}[Global elements in $\PSF$ and $\Tcplx$]
 		For $P:\Fin_+^\op\to\Set$ a presheaf and $x\in P(1)$, let $\kappa^x:\K(1)\to P$ denote the adjunct of the global element $\g_{P(1)}(x)$. To spell it out, each component $\kappa^x_n:1\to P(n)$ is defined as the following composition:
 		\[1\xrightarrow{\g_{P(1)}(x)}P(1)\xrightarrow{P(!_n)}P(n)\]
-		Furthermore, Theorem \ref{KTComp} guarantees that $\kappa^x$ is a T-complex morphism whenever $P$ is a T-complex, and Theorems \ref{adjQPSF} and \ref{adjQT} assert that every global element in $\PSF$ as well as in $\TComp$ must be of this form.
+		Furthermore, Theorem \ref{KTcplx} guarantees that $\kappa^x$ is a T-complex morphism whenever $P$ is a T-complex, and Theorems \ref{adjQPSF} and \ref{adjQT} assert that every global element in $\PSF$ as well as in $\Tcplx$ must be of this form.
 	\end{definition}
-	\section{$\TComp$ as a topos}
+	\section{$\Tcplx$ as a topos}
 	\subsection{Polyhedral T-complexes}
 	\begin{definition}[Curried cartesian product]
 		Let $\M:\Fin_+\to\Fin_+^{\Fin_+}$ be the adjunct/curried version of the cartesian product functor $\times:\Fin_+\times\Fin_+\to\Fin_+$.
@@ -635,9 +635,9 @@
 		\end{tikzcd}\]
 		This diagram commutes because $C^{\pi^2_{l,n}}$ is centralized according to Corollary \ref{centerpi} and $(P,\phi)$ satisfies axiom (\ref{pullbackcomp}).
 	\end{proof}
-	Another subsection later, we will be defining the internal hom-functor in $\TComp$ in terms of polyhedral T-complexes, and thus show that $\TComp$ is cartesian closed.
+	Another subsection later, we will be defining the internal hom-functor in $\Tcplx$ in terms of polyhedral T-complexes, and thus show that $\Tcplx$ is cartesian closed.
 	\subsection{Products and Sums}
-	In this subsection, we show that an arbitrary (small) product or sum of T-complexes is again a T-complex. This means the category $\TComp$ has all (small) products and sums.
+	In this subsection, we show that an arbitrary (small) product or sum of T-complexes is again a T-complex. This means the category $\Tcplx$ has all (small) products and sums.
 	
 	The case for products is quite straightforward:
 	\begin{theorem}[Product of T-complexes]
@@ -650,7 +650,7 @@
 		\end{equation}
 		for every centralized simplicial complex $c:\X(C)\to\prod_iP_i$ and $i\in I$. This indeed uniquely defines $\prod_i\phi_i$ because of the universal property of cartesian products.
 		
-		The fact that the fillers defined as such indeed satisfies the axioms in Definition \ref{TComp} also follows directly from the universal property of cartesian products, and that all $\phi_i$ satisfy these axioms. The exact proof shall hence not be spelled out here, and instead left as an exercise for the inquisitive among the readers.
+		The fact that the fillers defined as such indeed satisfies the axioms in Definition \ref{Tcplx} also follows directly from the universal property of cartesian products, and that all $\phi_i$ satisfy these axioms. The exact proof shall hence not be spelled out here, and instead left as an exercise for the inquisitive among the readers.
 	\end{proof}
 	The same statement for sums is somewhat more complicated to prove and requires a lemma first:
 	\begin{lemma}[Centralized simplicial complexes in sums of presheaves]\label{cscsum}
@@ -702,5 +702,15 @@
 		Indeed, it is again easy to check that this in fact uniquely defines $\coprod_i\phi_i$ and that it satisfies all the required axioms, thus making $\coprod_iP_i$ into a T-complex.
 	\end{proof}
 	\subsection{Exponentials}
-	In order to define exponentials (a.k.a. internal homs) in $\TComp$, we start by revisiting a known construction for exponentials in $\PSF$:
+	In order to define exponentials (a.k.a. internal homs) in $\Tcplx$, we start by revisiting a known construction for exponentials in $\PSF$:
+	\begin{theorem}
+		For $P,Q:\Fin_+^\op\to\Set$, define the exponential $Q^P:\Fin_+^\op\to\Set$ as follows
+		\begin{align*}
+			Q^P(n)&:=\PSF(P,Q\circ\M(n))\\
+			Q^P(f)&:Q^P(n)\to Q^P(m)\qquad\text{for }f:m\to n\\
+			&\quad\qquad\eta\mapsto(\id_Q*\M(f))\circ\eta
+		\end{align*}
+		This makes $\PSF$ into a cartesian closed category. In particular, we have the following natural isomorphism in $P,Q,R$:
+		\[\PSF(P\times Q, R)\cong\PSF(P,R^Q)\]
+	\end{theorem}
 \end{document}
