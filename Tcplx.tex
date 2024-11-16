@@ -323,7 +323,7 @@
 		
 		The general case is completely analogous.
 	\end{proof}
-	\begin{lemma}[Centralized simplicial complexes in constant presheaves]\label{scompK}
+	\begin{lemma}[Centralized simplicial complexes in constant presheaves]\label{cscK}
 		Let $c:\X(C)\to\K(A)$ be a centralized simplicial complex in $\K(A)$. Then there is some global element $\g_x:1\hookrightarrow A$ s.t. $c$ is equal to the following composition:
 		\[\X(C)\xrightarrow{!_{\X(C)}}\K(1)\xrightarrow{\K(\g_x)}\K(A)\]
 	\end{lemma}
@@ -355,11 +355,11 @@
 		\[c_{1+m}\langle\g_k;f\rangle=c_m(\langle\g_k;f\rangle\circ i^2)=c_m(f)\]
 		Together with equation (\ref{triangle}) above, this gives $c_m(f)=x$, which is what we claimed at the beginning of the paragraph.
 	\end{proof}
-	\begin{theorem}[Constant presheaves are T-complexes]\label{KTcplx}
+	\begin{theorem}[Constant presheaves are T-complexes]\label{TcplxK}
 		For every set $A$, $\K(A)$ can be given a T-complex structure in a unique way. Furthermore, every natural transformation $\eta:P\to\K(A)$ from some T-complex $P$ into $\K(A)$, as well as every natural transformation $\epsilon:\K(A)\to P$ from $\K(A)$ into a T-complex $P$, is a T-complex morphism.
 	\end{theorem}
 	\begin{proof}
-		Consider a simplicial complex $c:\X(C)\to\K(A)$ with $C\in\ASC_n$, $n\in\N_+$ and suppose it has a lifting simplex $s:\Y(n)\to\K(A)$. By the previous Lemma \ref{scompK}, $c$ must factor through some $\K(\g_x)$ with $x\in A$, and $s$ must also factor through some $\K(\g_y)$ with $y\in A$. Consider the following diagram
+		Consider a simplicial complex $c:\X(C)\to\K(A)$ with $C\in\ASC_n$, $n\in\N_+$ and suppose it has a lifting simplex $s:\Y(n)\to\K(A)$. By the previous Lemma \ref{cscK}, $c$ must factor through some $\K(\g_x)$ with $x\in A$, and $s$ must also factor through some $\K(\g_y)$ with $y\in A$. Consider the following diagram
 		\[\begin{tikzcd}
 			\X(C)\arrow{rr}{c}\arrow[two heads]{dr}{!_{\X(C)}}\arrow[bend right=30]{dddr}[swap]{\iota_C}&&\K(A)\\
 			&\K(1)\arrow[hook,shift left=1mm]{ur}{\g_x}\arrow[hook',shift right=1mm]{ur}[swap]{\g_y}\\\\
@@ -374,13 +374,13 @@
 			\X(C)\arrow{r}{c}\arrow{dr}[swap]{\iota_C}&\K(A)\arrow{r}{\epsilon}&P\\
 			&\Y(n)\arrow{u}\arrow{ur}[swap]{\phi^c}
 		\end{tikzcd}\]
-		Again, by invoking Lemma \ref{scompK}, we decompose $c$ into $\X(C)\twoheadrightarrow\K(1)\xrightarrow{\g_x}\K(A)$ with some $x\in A$, and by replacing $\K(1)$ with $\Y(1)$, we get the following diagram, which commutes because of (\ref{epifac}):
+		Again, by invoking Lemma \ref{cscK}, we decompose $c$ into $\X(C)\twoheadrightarrow\K(1)\xrightarrow{\g_x}\K(A)$ with some $x\in A$, and by replacing $\K(1)$ with $\Y(1)$, we get the following diagram, which commutes because of (\ref{epifac}):
 		\[\begin{tikzcd}
 			\X(C)\arrow[two heads]{r}\arrow{dr}[swap]{\iota_C}&\Y(1)\arrow[hook]{r}&\K(A)\arrow{d}{\epsilon}\\
 			&\Y(n)\arrow[two heads]{u}[swap]{\Y(!_n)}\arrow{r}[swap]{\phi^c}&P
 		\end{tikzcd}\]
 	\end{proof}
-	Because of Theorem \ref{YTcplx} and \ref{KTcplx}, we shall consider the functors $\Y$ and $\K$ to take values in $\Tcplx$ instead of $\PSF$, i.e. $\Y,\K:\Set\hookrightarrow\Tcplx$, since there is hardly any ambiguity.
+	Because of Theorem \ref{YTcplx} and \ref{TcplxK}, we shall consider the functors $\Y$ and $\K$ to take values in $\Tcplx$ instead of $\PSF$, i.e. $\Y,\K:\Set\hookrightarrow\Tcplx$, since there is hardly any ambiguity.
 	\begin{theorem}\label{adjQT}
 		The restricted version of $Q$, i.e. $\Q:\Tcplx\twoheadrightarrow\Set$ also has both a left and a right adjoint, with $\K:\Set\hookrightarrow\Tcplx$ being the left adjoint and $\Y:\Set\hookrightarrow\Tcplx$ the right adjoint.
 	\end{theorem}
@@ -389,7 +389,7 @@
 		\[\PSF(\K(A),P)\cong\Set(A,P(1))\qquad\Set(P(1),A)\cong\PSF(P,\Y(A))\]
 		We also have the following equality between sets from Theorem \ref{YTcplx}:
 		\[\PSF(P,\Y(A))=\Tcplx(P,\Y(A))\]
-		as well as the following from Theorem \ref{KTcplx}:
+		as well as the following from Theorem \ref{TcplxK}:
 		\[\PSF(\K(A),P)=\Tcplx(\K(A),P)\]
 		whenever $P:\Fin_+^\op\to\Set$ is a T-complex. Putting them all together, we get the following natural isomorphisms:
 		\[\Tcplx(\K(A),P)\cong\Set(A,P(1))\qquad\Set(P(1),A)\cong\Tcplx(P,\Y(A))\]
@@ -398,7 +398,7 @@
 	\begin{definition}[Global elements in $\PSF$ and $\Tcplx$]
 		For $P:\Fin_+^\op\to\Set$ a presheaf and $x\in P(1)$, let $\kappa^x:\K(1)\to P$ denote the adjunct of the global element $\g_{P(1)}(x)$. To spell it out, each component $\kappa^x_n:1\to P(n)$ is defined as the following composition:
 		\[1\xrightarrow{\g_{P(1)}(x)}P(1)\xrightarrow{P(!_n)}P(n)\]
-		Furthermore, Theorem \ref{KTcplx} guarantees that $\kappa^x$ is a T-complex morphism whenever $P$ is a T-complex, and Theorems \ref{adjQPSF} and \ref{adjQT} assert that every global element in $\PSF$ as well as in $\Tcplx$ must be of this form.
+		Furthermore, Theorem \ref{TcplxK} guarantees that $\kappa^x$ is a T-complex morphism whenever $P$ is a T-complex, and Theorems \ref{adjQPSF} and \ref{adjQT} assert that every global element in $\PSF$ as well as in $\Tcplx$ must be of this form.
 	\end{definition}
 	\section{$\Tcplx$ as a topos}
 	\subsection{Polyhedral T-complexes}
@@ -659,7 +659,7 @@
 	\begin{proof}
 		Say $C\in\ASC_n$. Because $C$ is centralized, there is some $k\in Z(C)\subset[n]$. We have $c_1(\g_k)\in\coprod_iP_i(1)$, so there exists some unique $i$ with $c_1(\g_k)\in P_i(1)$.
 		
-		We now show that $c_m(f)\in P_i(m)$ for every $m\in\N_+$ and $f\in\X(C)(m)$, which is same as saying that $c$ factors through some $d:\X(C)\to P_i$. Similar to the proof of Lemma \ref{scompK}, we consider the function $\langle\g_k;f\rangle:1+m\to n$, and the inclusions $i^1:1\to1+m$ and $i^2:m\to1+m$. Per definition of sum/coproduct we have:
+		We now show that $c_m(f)\in P_i(m)$ for every $m\in\N_+$ and $f\in\X(C)(m)$, which is same as saying that $c$ factors through some $d:\X(C)\to P_i$. Similar to the proof of Lemma \ref{cscK}, we consider the function $\langle\g_k;f\rangle:1+m\to n$, and the inclusions $i^1:1\to1+m$ and $i^2:m\to1+m$. Per definition of sum/coproduct we have:
 		\[\langle\g_k;f\rangle\circ i^1=\g_k\quad\langle\g_k;f\rangle\circ i^2=f\]
 		and also $\im\langle\g_k;f\rangle=\im(\g_k)\cup\im(f)=\{k\}\cup\im(f)\in C$, as $k\in Z(C)$ and $\im(f)\in C$. By naturality of $c$, we have the following commutative diagram:
 		\[\begin{tikzcd}
@@ -690,7 +690,7 @@
 		which is what we claimed.
 	\end{proof}
 	With this, it is now easy to see how we can equip $\coprod_iP_i$ with a T-complex structure:
-	\begin{theorem}
+	\begin{theorem}\label{Tcplxsum}
 		For every family of T-complexes $(P_i,\phi_i)_{i\in I}$, there is a unique way to equip their sum $\coprod_iP_i$ with a T-complex structure s.t. all inclusions $P_i\hookrightarrow\coprod_iP_i$ are T-complex homomorphisms.
 	\end{theorem}
 	\begin{proof}
@@ -701,16 +701,19 @@
 		\end{tikzcd}\]
 		Indeed, it is again easy to check that this in fact uniquely defines $\coprod_i\phi_i$ and that it satisfies all the required axioms, thus making $\coprod_iP_i$ into a T-complex.
 	\end{proof}
+	\begin{remark}
+		For a set $A$, we can view the constant presheaf $\K(A)$ as the $A$-indexed sum $\coprod_{x\in A}\Y(1)$. Thus, Lemma \ref{cscK} and Theorem \ref{TcplxK} (including their proofs) are simply special cases of Lemma \ref{cscsum} and \ref{Tcplxsum}
+	\end{remark}
 	\subsection{Exponentials}
 	In order to define exponentials (a.k.a. internal homs) in $\Tcplx$, we start by revisiting a known construction for exponentials in $\PSF$:
 	\begin{theorem}
 		For $P,Q:\Fin_+^\op\to\Set$, define the exponential $Q^P:\Fin_+^\op\to\Set$ as follows
 		\begin{align*}
 			Q^P(n)&:=\PSF(P,Q\circ\M(n))\\
-			Q^P(f)&:Q^P(n)\to Q^P(m)\qquad\text{for }f:m\to n\\
+			Q^P(f)&:Q^P(n)\to Q^P(m)\quad(\mathrm{for }\ f:m\to n)\\
 			&\quad\qquad\eta\mapsto(\id_Q*\M(f))\circ\eta
 		\end{align*}
-		This makes $\PSF$ into a cartesian closed category. In particular, we have the following natural isomorphism in $P,Q,R$:
-		\[\PSF(P\times Q, R)\cong\PSF(P,R^Q)\]
+		This makes $\PSF$ into a cartesian closed category. In particular, we have the following isomorphism that is natural in $P,Q,R$:
+		\[\iota_{P,Q,R}:\PSF(P\times Q, R)\xrightarrow{\sim}\PSF(P,R^Q)\]
 	\end{theorem}
 \end{document}
