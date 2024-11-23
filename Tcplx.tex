@@ -356,7 +356,7 @@
 		Together with equation (\ref{triangle}) above, this gives $c_m(f)=x$, which is what we claimed at the beginning of the paragraph.
 	\end{proof}
 	\begin{theorem}[Constant presheaves are T-complexes]\label{TcplxK}
-		For every set $A$, $\K(A)$ can be given a T-complex structure in a unique way. Furthermore, every natural transformation $\eta:P\to\K(A)$ from some T-complex $P$ into $\K(A)$, as well as every natural transformation $\epsilon:\K(A)\to P$ from $\K(A)$ into a T-complex $P$, is a T-complex morphism.
+		For every set $A$, $\K(A)$ can be given a T-complex structure in a unique way. Furthermore, every natural transformation $\eta:P\to\K(A)$ from some T-complex $P$ into $\K(A)$, as well as every natural transformation $\varepsilon:\K(A)\to P$ from $\K(A)$ into a T-complex $P$, is a T-complex morphism.
 	\end{theorem}
 	\begin{proof}
 		Consider a simplicial complex $c:\X(C)\to\K(A)$ with $C\in\ASC_n$, $n\in\N_+$ and suppose it has a lifting simplex $s:\Y(n)\to\K(A)$. By the previous Lemma \ref{cscK}, $c$ must factor through some $\K(\g_x)$ with $x\in A$, and $s$ must also factor through some $\K(\g_y)$ with $y\in A$. Consider the following diagram
@@ -369,14 +369,14 @@
 		
 		So we've shown that every simplicial complex in $\K(A)$ has a unique lifting simplex, and by the same reasoning as Theorem \ref{YTcplx} it follows that $\K(A)$ can be given a T-complex structure in a unique way and that every natural transformation from some T-complex into $\K(A)$ is a T-complex morphism.
 		
-		To show that a natural transformation $\epsilon:\K(A)\to P$ into some T-complex $P$ also preserves fillers, consider some simplicial complex $c:\X(C)\to\K(A)$ with $C\in\ASC_n$. We need to show the following diagram, in particular the right triangle, commutes:
+		To show that a natural transformation $\varepsilon:\K(A)\to P$ into some T-complex $P$ also preserves fillers, consider some simplicial complex $c:\X(C)\to\K(A)$ with $C\in\ASC_n$. We need to show the following diagram, in particular the right triangle, commutes:
 		\[\begin{tikzcd}
-			\X(C)\arrow{r}{c}\arrow{dr}[swap]{\iota_C}&\K(A)\arrow{r}{\epsilon}&P\\
+			\X(C)\arrow{r}{c}\arrow{dr}[swap]{\iota_C}&\K(A)\arrow{r}{\varepsilon}&P\\
 			&\Y(n)\arrow{u}\arrow{ur}[swap]{\phi^c}
 		\end{tikzcd}\]
 		Again, by invoking Lemma \ref{cscK}, we decompose $c$ into $\X(C)\twoheadrightarrow\K(1)\xrightarrow{\g_x}\K(A)$ with some $x\in A$, and by replacing $\K(1)$ with $\Y(1)$, we get the following diagram, which commutes because of (\ref{epifac}):
 		\[\begin{tikzcd}
-			\X(C)\arrow[two heads]{r}\arrow{dr}[swap]{\iota_C}&\Y(1)\arrow[hook]{r}&\K(A)\arrow{d}{\epsilon}\\
+			\X(C)\arrow[two heads]{r}\arrow{dr}[swap]{\iota_C}&\Y(1)\arrow[hook]{r}&\K(A)\arrow{d}{\varepsilon}\\
 			&\Y(n)\arrow[two heads]{u}[swap]{\Y(!_n)}\arrow{r}[swap]{\phi^c}&P
 		\end{tikzcd}\]
 	\end{proof}
@@ -556,15 +556,15 @@
 		\[\X(C)\xrightarrow{\iota_C}\Y(n)\xrightarrow{\F(c)}\Y(k)\xrightarrow{s}P\circ\M(m)\]
 		Applying $\tau$ to it, we get the following composition according to Lemma \ref{sigstruct} and Theorem \ref{taubij}:
 		\[\X(C^{\pi^2})\xrightarrow{\iota_{C^{\pi^2}}}\Y(m\times n)\xrightarrow{\id_m\times\F(c)}\Y(m\times k)\xrightarrow{\tau(s)}P\]
-		Now, let $d:\X(C^{\pi^2})\to\Y(m\times k)$ denote the composition of the first two arrows. So far, what we've proven is simply $\tau(s\circ c)=\tau(s)\circ d$, but also $\F(d)=\id_m\times\F(c)$ as the simplex $\Y(m\times n)\to\Y(m\times k)$ that lifts $d$ is unique. Furthermore, we see that $d$ is also epic, because there is the following situation with $\eta\circ d=\epsilon\circ d$ for some presheaf $Q$ and some $\eta,\epsilon:\Y(m\times k)\to Q$:
+		Now, let $d:\X(C^{\pi^2})\to\Y(m\times k)$ denote the composition of the first two arrows. So far, what we've proven is simply $\tau(s\circ c)=\tau(s)\circ d$, but also $\F(d)=\id_m\times\F(c)$ as the simplex $\Y(m\times n)\to\Y(m\times k)$ that lifts $d$ is unique. Furthermore, we see that $d$ is also epic, because there is the following situation with $\eta\circ d=\varepsilon\circ d$ for some presheaf $Q$ and some $\eta,\varepsilon:\Y(m\times k)\to Q$:
 		\[\begin{tikzcd}
-			\X(C^{\pi^2})\arrow{r}{d}&\Y(m\times k)\arrow[shift left=1mm]{r}{\eta}\arrow[shift right=1mm]{r}[swap]{\epsilon}&Q
+			\X(C^{\pi^2})\arrow{r}{d}&\Y(m\times k)\arrow[shift left=1mm]{r}{\eta}\arrow[shift right=1mm]{r}[swap]{\varepsilon}&Q
 		\end{tikzcd}\]
-		Applying $\sigma$ to it yields the following with $\sigma(\eta)\circ c=\sigma(\epsilon)\circ c$:
+		Applying $\sigma$ to it yields the following with $\sigma(\eta)\circ c=\sigma(\varepsilon)\circ c$:
 		\[\begin{tikzcd}
-			\X(C)\arrow[two heads]{r}{c}&\Y(k)\arrow[shift left=1mm]{r}{\sigma(\eta)}\arrow[shift right=1mm]{r}[swap]{\sigma(\epsilon)}&Q\circ\M(m)
+			\X(C)\arrow[two heads]{r}{c}&\Y(k)\arrow[shift left=1mm]{r}{\sigma(\eta)}\arrow[shift right=1mm]{r}[swap]{\sigma(\varepsilon)}&Q\circ\M(m)
 		\end{tikzcd}\]
-		Since $c$ is epic, we have $\sigma(\eta)=\sigma(\epsilon)$, and further applying $\tau$ to this equation gives $\eta=\epsilon$.
+		Since $c$ is epic, we have $\sigma(\eta)=\sigma(\varepsilon)$, and further applying $\tau$ to this equation gives $\eta=\varepsilon$.
 		
 		Hence, since $(P,\phi)$ is a T-complex and $d:\X(C^{\pi^2})\twoheadrightarrow\Y(m\times k)$ is epic, we have the following commutative triangle:
 		\[\begin{tikzcd}
@@ -716,4 +716,48 @@
 		This makes $\PSF$ into a cartesian closed category. In particular, we have the following isomorphism that is natural in $P,Q,R$:
 		\[\iota_{P,Q,R}:\PSF(P\times Q, R)\xrightarrow{\sim}\PSF(P,R^Q)\]
 	\end{theorem}
+	\begin{proof}
+		We start by defining $\iota$. Expanding the definition step by step, here's what we need to define
+		\begin{align*}
+			\iota_{P,Q,R}&:\PSF(P\times Q, R)\to\PSF(P, R^Q)\\
+			\iota_{P,Q,R}(\eta)&:P\to R^Q\\
+			\iota_{P,Q,R}(\eta)_m&:P(m)\to R^Q(m)=\PSF(Q, R\circ\M(m))\\
+			\iota_{P,Q,R}(\eta)_m(x)&:Q\to R\circ\M(m)\\
+			\iota_{P,Q,R}(\eta)_m(x)_n&:Q(n)\to R(m\times n)
+			\intertext{With $\eta:P\times Q\to R$, $m,n\in\N_+$ and $x\in P(m)$ arbitrary. We can now give an explicit expression for the last function:}
+			&y\mapsto\eta_{m\times n}(P(\pi^1_{m,n})(x), Q(\pi^2_{m,n})(y))
+		\end{align*}
+		As it is rather tedious and boring to check that this is indeed a well-defined natural transformation, it is left as an exercise for the curious (or simply bored) reader. To show that this is an isomorphism, we give an explicit definition for its inverse, which we shall call $\kappa$. To define it we again expand the definition step by step:
+		\begin{align*}
+			\kappa_{P,Q,R}&:\PSF(P, R^Q)\to\PSF(P\times Q, R)\\
+			\kappa_{P,Q,R}(\varepsilon)&:P\times Q\to R\\
+			\kappa_{P,Q,R}(\varepsilon)_n&:P(n)\times Q(n)\to R(n)\\
+			\intertext{With $\varepsilon:P\to Q^R$ and $n\in\N_+$ arbitrary. We can again give an explicit expression for the last function:}
+			&(x,y)\mapsto R(\Delta_n)(\varepsilon_n(x)_n(y))
+		\end{align*}
+		Where $\Delta_n:=(\id_n;\id_n):n\to n\times n$ is the diagonal map. Again, it is left as an exercise for the reader to check that this is well-defined. We will however verify here that $\iota$ and $\kappa$ are indeed inverse to each other. For $\eta:P\times Q\to R$, $n\in\N_+$, $x\in P(n)$ and $y\in Q(n)$, we have
+		\begin{align*}
+			&\kappa_{P,Q,R}(\iota_{P,Q,R}(\eta))_n(x, y)\\
+			=\ &R(\Delta_n)(\iota_{P,Q,R}(\eta)_n(x)_n(y))\\
+			=\ &R(\Delta_n)(\eta_{n\times n}(P(\pi^1_{n,n})(x), Q(\pi^2_{n,n})(y)))\\
+			=\ &\eta_n((P\times Q)(\Delta_n)(P(\pi^1_{n,n})(x), Q(\pi^2_{n,n})(y)))\\
+			=\ &\eta_n(P(\pi^1_{n,n}\circ\Delta_n)(x),Q(\pi^2_{n,n}\circ\Delta_n)(x))\\
+			=\ &\eta_n(P(\id_n)(x), Q(\id_n)(y))\\
+			=\ &\eta_n(x,y)
+		\end{align*}
+		So $\kappa\circ\iota=\id$. For the other composition, take $\varepsilon:P\to R^Q$, $m,n\in\N_+$, $x\in P(m)$ and $y\in Q(n)$:
+		\begin{align*}
+			&\iota_{P,Q,R}(\kappa_{P,Q,R}(\varepsilon))_m(x)_n(y)\\
+			=\ &\kappa_{P,Q,R}(\varepsilon)_{m\times n}(P(\pi^1_{m,n})(x), Q(\pi^2_{m,n})(y))\\
+			=\ &R(\Delta_{m\times n})(\varepsilon_{m\times n}(P(\pi^1_{m,n})(x))_{m\times n}(Q(\pi^2_{m,n})(y)))\\
+			=\ &R(\Delta_{m\times n})((\id_R*\M(\pi^1_{m,n}))(\varepsilon_m(x)_{m\times n}(Q(\pi^2_{m,n})(y))))\\
+			=\ &R(\Delta_{m\times n})((\id_R*\M(\pi^1_{m,n}))(R(\id_m\times \pi^2_{m, n})(\varepsilon_m(x)_n(y))))\\
+			=\ &R(\Delta_{m\times n})(R(\pi^1_{m,n}\times\pi^2_{m,n})(\varepsilon_m(x)_n(y)))\\
+			=\ &R((\pi^1_{m,n}\times\pi^2_{m,n})\circ\Delta_{m\times n})(\varepsilon_m(x)_n(y))\\
+			=\ &R(\pi^1_{m,n};\pi^2_{m,n})(\varepsilon_m(x)_n(y))\\
+			=\ &R(\id_{m\times n})(\varepsilon_m(x)_n(y))\\
+			=\ &\varepsilon_m(x)_n(y)
+		\end{align*}
+		So $\iota\circ\kappa=\id$ as well. This concludes the proof.
+	\end{proof}
 \end{document}
