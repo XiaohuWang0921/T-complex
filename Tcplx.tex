@@ -521,7 +521,7 @@
 		\end{enumerate}
 	\end{proof}
 	The lemma paves way for the following theorem, which is the focus of the subsection:
-	\begin{theorem}[$m$-polyhedral T-complex]
+	\begin{theorem}[$m$-polyhedral T-complex]\label{polyT}
 		Given a T-complex $(P,\phi)$ and an $m\in\N$, the $m$-polyhedral presheaf $P\circ\M(m)$ can also be made into a T-complex $(P\circ\M(m),\psi)$, with $\psi^c:=\sigma(\phi^{\tau(c)})$, i.e. it simply transforms a simplicial complex $c$ in $P\circ\M(m)$ into one in $P$ using $\tau$, fills it using $\phi$, then transforms the filled simplex in $P$ into a simplex in $P\circ\M(m)$ again using $\sigma$.
 	\end{theorem}
 	\begin{proof}
@@ -601,11 +601,11 @@
 		Hence the two are one and the same.
 	\end{proof}
 	Now, the promised theorem to conclude the section:
-	\begin{theorem}
+	\begin{theorem}\label{GodementThom}
 		Let $(P,\phi)$ be a T-complex and $f:l\to m$ a function between canonical finite sets. Then $\id_P*\M(f):P\circ\M(m)\to P\circ\M(l)$ is a homomorphism between T-complexes. To spell it out: Let $\psi_m$ be the filler of $P\circ\M(m)$ and $\psi_l$ the filler of $P\circ\M(l)$. For every centralized simplicial complex $c:\X(C)\to P\circ\M(m)$, the following diagram commutes:
 		\[\begin{tikzcd}
-			\X(C)\arrow[hook]{dr}[swap]{\iota_C}\arrow{r}{c}&P\circ\M(m)\arrow{r}{\id_P*\M(f)}&P\circ\M(l)\\
-			&\Y(n)\arrow{u}{\psi_m^c}\arrow{ur}[swap]{\psi_l^{(\id_P*\M(f))\circ c}}
+			\X(C)\arrow[hook]{dr}[swap]{\iota_C}\arrow{r}{c}&P\circ\M(m)\arrow{rr}{\id_P*\M(f)}&&P\circ\M(l)\\
+			&\Y(n)\arrow{u}{\psi_m^c}\arrow{urr}[swap]{\psi_l^{(\id_P*\M(f))\circ c}}
 		\end{tikzcd}\]
 	\end{theorem}
 	\begin{proof}
@@ -706,7 +706,7 @@
 	\end{remark}
 	\subsection{Exponentials}
 	In order to define exponentials (a.k.a. internal homs) in $\Tcplx$, we start by revisiting a known construction for exponentials in $\PSF$:
-	\begin{theorem}
+	\begin{theorem}\label{PSFCCC}
 		For $P,Q:\Fin_+^\op\to\Set$, define the exponential $Q^P:\Fin_+^\op\to\Set$ as follows
 		\begin{align*}
 			Q^P(n)&:=\PSF(P,Q\circ\M(n))\\
@@ -759,5 +759,31 @@
 			=\ &\varepsilon_m(x)_n(y)
 		\end{align*}
 		So $\iota\circ\kappa=\id$ as well. This concludes the proof.
+	\end{proof}
+	\begin{remark}
+		I came up with the construction for Theorem \ref{PSFCCC} myself, however I later found out that it is in fact just a special case of the something called the Day convolution. More about it \href{https://ncatlab.org/nlab/show/Day+convolution}{here}.
+	\end{remark}
+	With this, we can formulate the following theorem, which is basically the whole point of T-complexes:
+	\begin{theorem}
+		For every presheaf $P$ and $C\in\ASC_n$, one can define a natural transformation
+		\[\xi:=P^{\iota_C}:P^{\Y(n)}\to P^{\X(C)}\]
+		If $P$ is indeed a T-complex with fillers $\phi$, then $\xi:P^{\Y(n)}\twoheadrightarrow P^{\X(C)}$ is indeed a retraction whose right inverse can be given by:
+		\begin{align*}
+			\psi&:P^{\X(C)}\hookrightarrow P^{\Y(n)}\\
+			\psi_m(c)&:=\sigma(\phi^{\tau(c)})
+		\end{align*}
+	\end{theorem}
+	\begin{proof}
+		Notice that each $\psi_m(c)$ is simply the filler of the simplicial complex $c:\X(C)\to P$ as defined by Theorem \ref{polyT}, so as a filler it lifts $c$, thus $\psi$ is indeed a componentwise right inverse to $\xi$, which is simply the precomposition with $\iota_C$. To show that $\psi$ is also natural, we simply show that the following diagram commutes
+		\[\begin{tikzcd}
+			\PSF(\X(C),P\circ\M(m))\arrow{rrr}{(\id_P*\M(f))\circ-}\arrow{d}[swap]{\psi_m}&&&\PSF(\X(C),P\circ\M(l))\arrow{d}{\psi_l}\\
+			\PSF(\Y(n),P\circ\M(m))\arrow{rrr}[swap]{(\id_P*\M(f))\circ-}&&&\PSF(\Y(n),P\circ\M(l))
+		\end{tikzcd}\]
+		for every $f:l\to m$. This is the same as saying for every $c:\X(C)\to\M(m)$, the following diagram commutes:
+		\[\begin{tikzcd}
+			\X(C)\arrow[hook]{dr}[swap]{\iota_C}\arrow{r}{c}&P\circ\M(m)\arrow{rr}{\id_P*\M(f)}&&P\circ\M(l)\\
+			&\Y(n)\arrow{u}[swap]{\sigma(\phi^{\tau(c)})}\arrow{rur}[swap]{\sigma(\phi^{\tau((\id_P*\M(f))\circ c)})}
+		\end{tikzcd}\]
+		This is however precisely the statement of Theorem \ref{GodementThom}.
 	\end{proof}
 \end{document}
