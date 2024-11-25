@@ -401,6 +401,7 @@
 		Furthermore, Theorem \ref{TcplxK} guarantees that $\kappa^x$ is a T-complex morphism whenever $P$ is a T-complex, and Theorems \ref{adjQPSF} and \ref{adjQT} assert that every global element in $\PSF$ as well as in $\Tcplx$ must be of this form.
 	\end{definition}
 	\section{$\Tcplx$ as a topos}
+	\begin{comment}
 	\subsection{Polyhedral T-complexes}
 	\begin{definition}[Curried cartesian product]
 		Let $\M:\Fin_+\to\Fin_+^{\Fin_+}$ be the adjunct/curried version of the cartesian product functor $\times:\Fin_+\times\Fin_+\to\Fin_+$.
@@ -497,12 +498,6 @@
 			\end{align*}
 			to:
 			\[\X(C^f)\xrightarrow{\X(f)}\X(C)\xrightarrow{\sigma(c)}P\circ\M(m)\]
-			\begin{comment}
-				\item Given $s:\Y(m\times n)\to P$ and $f:k\to n$, $\sigma$ maps the following:
-				\[\Y(m\times k)\xrightarrow{\Y(\id_m\times f)}\Y(m\times n)\xrightarrow{s}P\]
-				to:
-				\[\Y(k)\xrightarrow{\Y(f)}\Y(n)\xrightarrow{\sigma(s)}P\circ\M(m)\]
-			\end{comment}
 		\end{enumerate}
 		And, of course, since $\tau$ is the inverse of $\sigma$, it maps the second composition in each case to the first.
 	\end{lemma}
@@ -636,6 +631,7 @@
 		This diagram commutes because $C^{\pi^2_{l,n}}$ is centralized according to Corollary \ref{centerpi} and $(P,\phi)$ satisfies axiom (\ref{pullbackcomp}).
 	\end{proof}
 	Another subsection later, we will be defining the internal hom-functor in $\Tcplx$ in terms of polyhedral T-complexes, and thus show that $\Tcplx$ is cartesian closed.
+	\end{comment}
 	\subsection{Products and Sums}
 	In this subsection, we show that an arbitrary (small) product or sum of T-complexes is again a T-complex. This means the category $\Tcplx$ has all (small) products and sums.
 	
@@ -706,6 +702,7 @@
 	\end{remark}
 	\subsection{Exponentials}
 	In order to define exponentials (a.k.a. internal homs) in $\Tcplx$, we start by revisiting a known construction for exponentials in $\PSF$:
+	\begin{comment}
 	\begin{theorem}\label{PSFCCC}
 		For $P,Q:\Fin_+^\op\to\Set$, define the exponential $Q^P:\Fin_+^\op\to\Set$ as follows
 		\begin{align*}
@@ -786,4 +783,5 @@
 		\end{tikzcd}\]
 		This is however precisely the statement of Theorem \ref{GodementThom}.
 	\end{proof}
+	\end{comment}
 \end{document}
