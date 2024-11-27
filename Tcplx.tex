@@ -701,7 +701,7 @@
 		For a set $A$, we can view the constant presheaf $\K(A)$ as the $A$-indexed sum $\coprod_{x\in A}\Y(1)$. Thus, Lemma \ref{cscK} and Theorem \ref{TcplxK} (including their proofs) are simply special cases of Lemma \ref{cscsum} and \ref{Tcplxsum}
 	\end{remark}
 	\subsection{Exponentials}
-	In order to define exponentials (a.k.a. internal homs) in $\Tcplx$, we start by revisiting a known construction for exponentials in $\PSF$:
+	In order to define exponentials (a.k.a. internal homs) in $\Tcplx$, we start by revisiting the known construction for exponentials in $\PSF$:
 	\begin{comment}
 	\begin{theorem}\label{PSFCCC}
 		For $P,Q:\Fin_+^\op\to\Set$, define the exponential $Q^P:\Fin_+^\op\to\Set$ as follows
@@ -784,4 +784,52 @@
 		This is however precisely the statement of Theorem \ref{GodementThom}.
 	\end{proof}
 	\end{comment}
+	\begin{theorem}\label{PSFCCC}
+		For $P,Q:\Fin_+^\op\to\Set$, define the exponential $Q^P:\Fin_+^\op\to\Set$ as follows
+		\begin{align*}
+			Q^P(n)&:=\PSF(\Y(n)\times P,Q)\\
+			Q^P(f)&:Q^P(n)\to Q^P(m)\quad(\mathrm{for }\ f:m\to n)\\
+			&\quad\qquad\eta\mapsto\eta\circ(\Y(f)\times\id_P)
+		\end{align*}
+		This makes $\PSF$ into a cartesian closed category. In particular, we have the following isomorphism that is natural in $P,Q,R$:
+		\[\iota_{P,Q,R}:\PSF(P\times Q, R)\xrightarrow{\sim}\PSF(P,R^Q)\]
+	\end{theorem}
+	\begin{proof}
+		We start by defining $\iota$. Expanding the definition step by step, here's what we need to define
+		\begin{align*}
+			\iota_{P,Q,R}&:\PSF(P\times Q, R)\to\PSF(P, R^Q)\\
+			\iota_{P,Q,R}(\eta)&:P\to R^Q\\
+			\iota_{P,Q,R}(\eta)_n&:P(n)\to R^Q(n)=\PSF(\Y(n)\times Q, R)\\
+			\iota_{P,Q,R}(\eta)_n(x)&:\Y(n)\times Q\to R\\
+			\iota_{P,Q,R}(\eta)_n(x)_m&:\Fin_+(m, n)\times Q(m)\to R(m)
+			\intertext{With $\eta:P\times Q\to R$, $m,n\in\N_+$ and $x\in P(n)$ arbitrary. We can now give an explicit expression for the last function:}
+			&(f,y)\mapsto\eta_m(P(f)(x),y)
+		\end{align*}
+		As it is rather tedious and boring to check that this is indeed a well-defined natural transformation, it is left as an exercise for the curious (or simply bored) reader. To show that this is an isomorphism, we give an explicit definition for its inverse, which we shall call $\kappa$. To define it we again expand the definition step by step:
+		\begin{align*}
+			\kappa_{P,Q,R}&:\PSF(P, R^Q)\to\PSF(P\times Q, R)\\
+			\kappa_{P,Q,R}(\varepsilon)&:P\times Q\to R\\
+			\kappa_{P,Q,R}(\varepsilon)_n&:P(n)\times Q(n)\to R(n)\\
+			\intertext{With $\varepsilon:P\to Q^R$ and $n\in\N_+$ arbitrary. We can again give an explicit expression for the last function:}
+			&(x,y)\mapsto\varepsilon_n(x)_n(\id_n,y)
+		\end{align*}
+		Again, it is left as an exercise for the reader to check that this is well-defined. We will however verify here that $\iota$ and $\kappa$ are indeed inverse to each other. For $\eta:P\times Q\to R$, $n\in\N_+$, $x\in P(n)$ and $y\in Q(n)$, we have
+		\begin{align*}
+			&\kappa_{P,Q,R}(\iota_{P,Q,R}(\eta))_n(x, y)\\
+			=\ &\iota_{P,Q,R}(\eta)_n(x)_n(\id_n, y)\\
+			=\ &\eta_n(P(\id_n)(x),y)\\
+			=\ &\eta_n(x,y)
+		\end{align*}
+		So $\kappa\circ\iota=\id$. For the other composition, take $\varepsilon:P\to R^Q$, $m,n\in\N_+$, $x\in P(n)$ and $y\in Q(m)$:
+		\begin{align*}
+			&\iota_{P,Q,R}(\kappa_{P,Q,R}(\varepsilon))_n(x)_m(y)\\
+			=\ &\kappa_{P,Q,R}(\varepsilon)_m(P(f)(x), y)\\
+			=\ &\varepsilon_m(P(f)(x))_m(\id_m,y)\\
+			=\ &R^Q(f)(\varepsilon_n(x))_m(\id_m,y)\\
+			=\ &\varepsilon_n(x)_m((\Y(f)\times\id_Q)_m(\id_m,y))\\
+			=\ &\varepsilon_n(x)_m(\id_m\circ f,y)\\
+			=\ &\varepsilon_n(x)_m(f,y)
+		\end{align*}
+		So $\iota\circ\kappa=\id$ as well. This concludes the proof.
+	\end{proof}
 \end{document}
