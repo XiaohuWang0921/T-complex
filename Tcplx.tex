@@ -24,6 +24,9 @@
 \newcommand{\Tcplx}{\mathrm{Tcplx}}
 \newcommand{\Q}{\mathcal Q}
 \newcommand{\M}{\mathcal M}
+\newcommand{\Nat}{\mathrm{Nat}}
+\newcommand{\Coh}{\mathrm{Coh}}
+\newcommand{\WCoh}{\mathrm{WCoh}}
 \newenvironment{example}{\begin{proof}[Example]}{\end{proof}}
 \begin{document}
 	\section{T-complexes}
@@ -171,7 +174,7 @@
 		Let $n\in\N_+$ and $C\in\ASC_n$, and $P:\Fin_+^\op\to\Set$ be a presheaf over $\Fin_+$. A natural transformation $s:\Y(n)\to P$ is called an \textit{$n$-simplex} in $P$, while a $c:\X(C)\to P$ is called a \textit{(concrete) simplicial complex of shape $C$} in $P$.
 	\end{definition}
 	\begin{remark}
-		Yoneda lemma asserts $\PSF(\Y(n),P)\cong P(n)$. Hence one could alternatively define an $n$-simplex in $P$ simply as a $s\in P(n)$.
+		Yoneda lemma asserts $\Nat(\Y(n),P)\cong P(n)$. Hence one could alternatively define an $n$-simplex in $P$ simply as a $s\in P(n)$.
 	\end{remark}
 	\begin{definition}
 		For $m,n\in\N$ and $f:m\to n$, $\Y(f):\Y(m)\to\Y(n)$ is a natural transformation. Analogously, let $\X(f):\X(C^f)\to\X(C)$ also denote the natural transformation defined by composition with $f$, i.e.
@@ -244,8 +247,8 @@
 		\end{enumerate}
 		As is common with algebraic structures, we shall denote a T-complex simply $(P,\phi)$ simply by its underlying presheaf $P$, whenever the fillers can be inferred from the context. It should be kept in mind though that the fillers are really the more important part of the structure.
 	\end{definition}
-	\begin{definition}[T-complex morphisms and the category of T-complexes]
-		Let $(P,\phi)$ and $(Q,\psi)$ be two T-complexes. A natural transformation $\eta:P\to Q$ is called a \textit{T-complex morphism} if the following diagram, in particular the lower triangle, commutes for every centralized $C\in\ASC_n$ and $s:\X(C)\to P$:
+	\begin{definition}[Coherent transformations and the category of T-complexes]
+		Let $(P,\phi)$ and $(Q,\psi)$ be two T-complexes. A natural transformation $\eta:P\to Q$ is called \textit{coherent} if the following diagram, in particular the lower triangle, commutes for every centralized $C\in\ASC_n$ and $s:\X(C)\to P$:
 		\[\begin{tikzcd}
 			&&\X(C)\arrow{d}{s}\arrow[hook]{ld}[swap]{\iota(C)}\\
 			&\Y(n)\arrow{r}{\phi^s}\arrow{dr}[swap]{\psi^{\eta\circ s}}&P\arrow{d}{\eta}\\
@@ -253,10 +256,10 @@
 		\end{tikzcd}\]
 		Summarized in an equation, it just says $\eta\circ\phi^s=\psi^{\eta\circ s}$, i.e. that $\eta$ preserves fillers.
 		
-		Clearly, every identity transformation is a T-complex morphism, as well as the composition of two T-complex morphisms. Therefore, the T-complexes and morphisms between them form a category, which shall be denoted by $\Tcplx$.
+		Clearly, every identity transformation is coherent, as well as the composition of two coherent transformations. Therefore, the T-complexes and coherent transformations between them form a category, which shall be denoted by $\Tcplx$.
 	\end{definition}
-	\subsection{Examples for T-complexes and T-complex morphisms}
-	Here we give a couple of important examples for T-complexes and T-complex morphisms that we will encounter again.
+	\subsection{Examples for T-complexes and coherent transformations}
+	Here we give a couple of important examples for T-complexes and coherent transformations that we will encounter again.
 	
 	First we introduce some related functors:
 		\begin{definition}[Constant embedding]
@@ -276,7 +279,7 @@
 	\begin{proof}
 		To show that $K$ is the left adjoint of $\Q$, we show that the following (obviously) natural transformation is componentwise bijective, hence a natural isomorphism:
 		\begin{align*}
-			\PSF(\K(A), P)&\to\Set(A, P(1))\\
+			\Nat(\K(A), P)&\to\Set(A, P(1))\\
 			\eta&\mapsto\eta_1
 		\end{align*}
 		We do it by showing that for each set-theoretic function $f:A\to P(1)$, there is exactly one $\eta:\K(A)\to P$ s.t. $\eta_1=f$.
@@ -294,7 +297,7 @@
 		
 		To show that $\Y$ is the right adjoint of $\Q$, we show that the following (obviously) natural transformation is also componentwise bijective:
 		\begin{align*}
-			\Set(P(1),A)&\gets\PSF(P,\Y(A))\\
+			\Set(P(1),A)&\gets\Nat(P,\Y(A))\\
 			\g_A^{-1}\circ\eta_1&\mapsfrom\eta
 		\end{align*}
 		We do it by showing that for each set-theoretic function $f:P(1)\to A$, there is exactly one $\eta:P\to\Y(A)$ s.t. $f=\g_A^{-1}\circ\eta_1$. Suppose that such an $\eta$ exists. By naturality, the following square must commute for every $n\in\N_+$ and $k\in[n]$:
@@ -316,7 +319,7 @@
 	\end{proof}
 	The first example has already been foreshadowed by Theorem \ref{lift}:
 	\begin{theorem}[$\Y(A)$ are T-complexes]\label{YTcplx}
-		For every set $A$, $\Y(A):\Fin_+^\op\to\Set$ can be given a T-complex structure in a unique way, such that any natural transformation from a T-complex $P$ into $\Y(A)$ is also a T-complex morphism.
+		For every set $A$, $\Y(A):\Fin_+^\op\to\Set$ can be given a T-complex structure in a unique way, such that any natural transformation from a T-complex $P$ into $\Y(A)$ is also coherent.
 	\end{theorem}
 	\begin{proof}
 		For the case of $A=[n]$, theorem \ref{lift} guarantees that every simplicial complex (even non-centralized ones) in $\Y(n)$ has a unique lifting simplex, which can be chosen as fillers. Furthermore, since lifting simplex are unique, both axioms in Definition \ref{Tcplx} are automatically satisfied, and for the same reason they are also preserved by every natural transformation into $\Y(n)$.
@@ -356,7 +359,7 @@
 		Together with equation (\ref{triangle}) above, this gives $c_m(f)=x$, which is what we claimed at the beginning of the paragraph.
 	\end{proof}
 	\begin{theorem}[Constant presheaves are T-complexes]\label{TcplxK}
-		For every set $A$, $\K(A)$ can be given a T-complex structure in a unique way. Furthermore, every natural transformation $\eta:P\to\K(A)$ from some T-complex $P$ into $\K(A)$, as well as every natural transformation $\varepsilon:\K(A)\to P$ from $\K(A)$ into a T-complex $P$, is a T-complex morphism.
+		For every set $A$, $\K(A)$ can be given a T-complex structure in a unique way. Furthermore, every natural transformation $\eta:P\to\K(A)$ from some T-complex $P$ into $\K(A)$, as well as every natural transformation $\varepsilon:\K(A)\to P$ from $\K(A)$ into a T-complex $P$, is coherent.
 	\end{theorem}
 	\begin{proof}
 		Consider a simplicial complex $c:\X(C)\to\K(A)$ with $C\in\ASC_n$, $n\in\N_+$ and suppose it has a lifting simplex $s:\Y(n)\to\K(A)$. By the previous Lemma \ref{cscK}, $c$ must factor through some $\K(\g_x)$ with $x\in A$, and $s$ must also factor through some $\K(\g_y)$ with $y\in A$. Consider the following diagram
@@ -367,7 +370,7 @@
 		\end{tikzcd}\]
 		It's not hard to see that both paths $\X(C)\twoheadrightarrow\K(1)\hookrightarrow\K(A)$ in this diagram are equal, and that the unique natural transformation $!_{\X(C)}:\X(C)\twoheadrightarrow\K(1)$ is componentwise surjective ($\X(C)(m)$ is nonempty for every $m\in\N_+$) and hence indeed an epimorphism. So, it follows that $\g_x=\g_y$, thus $s=\g_x\circ\ !_{\Y(n)}$ is uniquely determined.
 		
-		So we've shown that every simplicial complex in $\K(A)$ has a unique lifting simplex, and by the same reasoning as Theorem \ref{YTcplx} it follows that $\K(A)$ can be given a T-complex structure in a unique way and that every natural transformation from some T-complex into $\K(A)$ is a T-complex morphism.
+		So we've shown that every simplicial complex in $\K(A)$ has a unique lifting simplex, and by the same reasoning as Theorem \ref{YTcplx} it follows that $\K(A)$ can be given a T-complex structure in a unique way and that every natural transformation from some T-complex into $\K(A)$ is coherent.
 		
 		To show that a natural transformation $\varepsilon:\K(A)\to P$ into some T-complex $P$ also preserves fillers, consider some simplicial complex $c:\X(C)\to\K(A)$ with $C\in\ASC_n$. We need to show the following diagram, in particular the right triangle, commutes:
 		\[\begin{tikzcd}
@@ -386,19 +389,19 @@
 	\end{theorem}
 	\begin{proof}
 		We already know from Theorem \ref{adjQPSF} of the adjoints of $\Q:\PSF\to\Set$, and of the following two natural isomorphisms:
-		\[\PSF(\K(A),P)\cong\Set(A,P(1))\qquad\Set(P(1),A)\cong\PSF(P,\Y(A))\]
+		\[\Nat(\K(A),P)\cong\Set(A,P(1))\qquad\Set(P(1),A)\cong\Nat(P,\Y(A))\]
 		We also have the following equality between sets from Theorem \ref{YTcplx}:
-		\[\PSF(P,\Y(A))=\Tcplx(P,\Y(A))\]
+		\[\Nat(P,\Y(A))=\Coh(P,\Y(A))\]
 		as well as the following from Theorem \ref{TcplxK}:
-		\[\PSF(\K(A),P)=\Tcplx(\K(A),P)\]
+		\[\Nat(\K(A),P)=\Coh(\K(A),P)\]
 		whenever $P:\Fin_+^\op\to\Set$ is a T-complex. Putting them all together, we get the following natural isomorphisms:
-		\[\Tcplx(\K(A),P)\cong\Set(A,P(1))\qquad\Set(P(1),A)\cong\Tcplx(P,\Y(A))\]
+		\[\Coh(\K(A),P)\cong\Set(A,P(1))\qquad\Set(P(1),A)\cong\Coh(P,\Y(A))\]
 		which means $\Q:\Tcplx\twoheadrightarrow\Set$ has the same adjunction property as $\Q:\PSF\twoheadrightarrow\Set$.
 	\end{proof}
 	\begin{definition}[Global elements in $\PSF$ and $\Tcplx$]
 		For $P:\Fin_+^\op\to\Set$ a presheaf and $x\in P(1)$, let $\kappa^x:\K(1)\to P$ denote the adjunct of the global element $\g_{P(1)}(x)$. To spell it out, each component $\kappa^x_n:1\to P(n)$ is defined as the following composition:
 		\[1\xrightarrow{\g_{P(1)}(x)}P(1)\xrightarrow{P(!_n)}P(n)\]
-		Furthermore, Theorem \ref{TcplxK} guarantees that $\kappa^x$ is a T-complex morphism whenever $P$ is a T-complex, and Theorems \ref{adjQPSF} and \ref{adjQT} assert that every global element in $\PSF$ as well as in $\Tcplx$ must be of this form.
+		Furthermore, Theorem \ref{TcplxK} guarantees that $\kappa^x$ is coherent whenever $P$ is a T-complex, and Theorems \ref{adjQPSF} and \ref{adjQT} assert that every global element in $\PSF$ as well as in $\Tcplx$ must be of this form.
 	\end{definition}
 	\section{$\Tcplx$ as a topos}
 	\begin{comment}
@@ -447,7 +450,7 @@
 	\end{remark}
 	So, for every simplicial complex $c:\X(C)\to P\circ\M(m)$ of shape $C$ in the $n$-polyhedral presheaf, there is a corresponding simplicial complex $\tau(c):\X(C^{\pi^2_{m,n}})\to P$ of shape $C^{\pi^2_{m,n}}$ in the original presheaf $P$. The following theorem states that this is indeed a one-to-one correspondence, i.e. a bijection:
 	\begin{theorem}\label{taubij}
-		The function $\PSF(\X(C),P\circ\M(m))\to\PSF(\X(C^{\pi^2_{m,n}}),P)$, $c\mapsto\tau(c)$ is bijective, with inverse given by $s\mapsto\sigma(s)$, where $\sigma(s)_l$ for each $l\in\N_+$ is defined by the following obviously natural mapping:
+		The function $\Nat(\X(C),P\circ\M(m))\to\Nat(\X(C^{\pi^2_{m,n}}),P)$, $c\mapsto\tau(c)$ is bijective, with inverse given by $s\mapsto\sigma(s)$, where $\sigma(s)_l$ for each $l\in\N_+$ is defined by the following obviously natural mapping:
 		\[f:l\to n\quad\longmapsto\quad\id_m\times f:m\times l\to m\times n\quad\longmapsto\quad s_{m\times l}(\id_m\times f)\in P(m\times l)\]
 		i.e.
 		\begin{equation}\label{sigma}
@@ -573,7 +576,7 @@
 		\end{tikzcd}\]
 		i.e. $\psi^{s\circ c} = s\circ \F(c)$.
 	\end{proof}
-	To conclude this section, we take a look at a special class of natural transformations between polyhedral T-complexes, namely those of the form $\id_P*\M(f):P\circ\M(m)\to P\circ\M(l)$, where $*$ is the Godement product, i.e. the horizontal composition of the identity transformation $\id_P:P\to P$ and $\M(f):\M(l)\to\M(m)$ with $f:l\to m$. The goal is to show that these are indeed T-complex morphisms.
+	To conclude this section, we take a look at a special class of natural transformations between polyhedral T-complexes, namely those of the form $\id_P*\M(f):P\circ\M(m)\to P\circ\M(l)$, where $*$ is the Godement product, i.e. the horizontal composition of the identity transformation $\id_P:P\to P$ and $\M(f):\M(l)\to\M(m)$ with $f:l\to m$. The goal is to show that these are indeed coherent.
 	\begin{lemma}\label{sigexch}
 		Let $P:\Fin^\op\to Set$ be a presheaf, $f:l\to m$ a function, $c:\X(C^{\pi^2_{m,n}})\to P$ be a simplicial complex, with $C\in\ASC_n$. $\sigma$ then maps the following composition:
 		\[\X(C^{\pi^2_{l,n}})=\X((C^{\pi^2_{m,n}})^{f\times\id_n})\xrightarrow{\X(f\times\id_n)}\X(C^{\pi^2_{m,n}})\xrightarrow{c}P\]
@@ -637,10 +640,10 @@
 	
 	The case for products is quite straightforward:
 	\begin{theorem}[Product of T-complexes]
-		Let $(P_i,\phi_i)_{i\in I}$ be a family of T-complexes. The product of there underlying presheaves, i.e. $\prod_iP_i$, can also be made into a T-complex in a unique way s.t. all projections $\pi_i:\prod_iP_i\to P_i$ are T-complex morphisms.
+		Let $(P_i,\phi_i)_{i\in I}$ be a family of T-complexes. The product of there underlying presheaves, i.e. $\prod_iP_i$, can also be made into a T-complex in a unique way s.t. all projections $\pi_i:\prod_iP_i\to P_i$ are coherent.
 	\end{theorem}
 	\begin{proof}
-		Let $\prod_i\phi_i$ denote the fillers for $\prod_iP_i$ that we shall define. In order for all projections to be T-complex morphisms, it must satisfy the equation
+		Let $\prod_i\phi_i$ denote the fillers for $\prod_iP_i$ that we shall define. In order for all projections to be coherent, it must satisfy the equation
 		\begin{equation}\label{prodfill}
 			\pi_i\circ\left(\prod_i\phi_i\right)^c=\phi_i^{\pi_i\circ c}
 		\end{equation}
@@ -687,10 +690,10 @@
 	\end{proof}
 	With this, it is now easy to see how we can equip $\coprod_iP_i$ with a T-complex structure:
 	\begin{theorem}\label{Tcplxsum}
-		For every family of T-complexes $(P_i,\phi_i)_{i\in I}$, there is a unique way to equip their sum $\coprod_iP_i$ with a T-complex structure s.t. all inclusions $P_i\hookrightarrow\coprod_iP_i$ are T-complex homomorphisms.
+		For every family of T-complexes $(P_i,\phi_i)_{i\in I}$, there is a unique way to equip their sum $\coprod_iP_i$ with a T-complex structure s.t. all inclusions $P_i\hookrightarrow\coprod_iP_i$ are coherent.
 	\end{theorem}
 	\begin{proof}
-		Again, let $\coprod_i\phi_i$ denote the fillers for $\coprod_iP_i$, and let $c:\X(C)\to\coprod_iP_i$ be an arbitrary centralized simplicial complex in the sum, with $C\in\ASC_n$. As proven in the previous Lemma \ref{cscsum}, it factors through some simplicial complex $d:\X(C)\to P_i$ for some unique $i\in I$. Hence, in order for the inclusion $P_i\hookrightarrow\coprod_iP_i$ to be a T-complex homomorphism, $\coprod_i\phi_i$ must be defined in a way s.t. the following diagram commutes:
+		Again, let $\coprod_i\phi_i$ denote the fillers for $\coprod_iP_i$, and let $c:\X(C)\to\coprod_iP_i$ be an arbitrary centralized simplicial complex in the sum, with $C\in\ASC_n$. As proven in the previous Lemma \ref{cscsum}, it factors through some simplicial complex $d:\X(C)\to P_i$ for some unique $i\in I$. Hence, in order for the inclusion $P_i\hookrightarrow\coprod_iP_i$ to be coherent, $\coprod_i\phi_i$ must be defined in a way s.t. the following diagram commutes:
 		\[\begin{tikzcd}
 			\X(C)\arrow{r}{d}\arrow{dr}[swap]{\iota_C}&P_i\arrow[hook]{r}&\coprod_iP_i\\
 			&\Y(n)\arrow{u}{\phi_i^d}\arrow{ur}[swap]{\left(\coprod_i\phi_i\right)^c}
@@ -706,19 +709,19 @@
 	\begin{theorem}\label{PSFCCC}
 		For $P,Q:\Fin_+^\op\to\Set$, define the exponential $Q^P:\Fin_+^\op\to\Set$ as follows
 		\begin{align*}
-			Q^P(n)&:=\PSF(P,Q\circ\M(n))\\
+			Q^P(n)&:=\Nat(P,Q\circ\M(n))\\
 			Q^P(f)&:Q^P(n)\to Q^P(m)\quad(\mathrm{for }\ f:m\to n)\\
 			&\quad\qquad\eta\mapsto(\id_Q*\M(f))\circ\eta
 		\end{align*}
 		This makes $\PSF$ into a cartesian closed category. In particular, we have the following isomorphism that is natural in $P,Q,R$:
-		\[\iota_{P,Q,R}:\PSF(P\times Q, R)\xrightarrow{\sim}\PSF(P,R^Q)\]
+		\[\iota_{P,Q,R}:\Nat(P\times Q, R)\xrightarrow{\sim}\Nat(P,R^Q)\]
 	\end{theorem}
 	\begin{proof}
 		We start by defining $\iota$. Expanding the definition step by step, here's what we need to define
 		\begin{align*}
-			\iota_{P,Q,R}&:\PSF(P\times Q, R)\to\PSF(P, R^Q)\\
+			\iota_{P,Q,R}&:\Nat(P\times Q, R)\to\Nat(P, R^Q)\\
 			\iota_{P,Q,R}(\eta)&:P\to R^Q\\
-			\iota_{P,Q,R}(\eta)_m&:P(m)\to R^Q(m)=\PSF(Q, R\circ\M(m))\\
+			\iota_{P,Q,R}(\eta)_m&:P(m)\to R^Q(m)=\Nat(Q, R\circ\M(m))\\
 			\iota_{P,Q,R}(\eta)_m(x)&:Q\to R\circ\M(m)\\
 			\iota_{P,Q,R}(\eta)_m(x)_n&:Q(n)\to R(m\times n)
 			\intertext{With $\eta:P\times Q\to R$, $m,n\in\N_+$ and $x\in P(m)$ arbitrary. We can now give an explicit expression for the last function:}
@@ -726,7 +729,7 @@
 		\end{align*}
 		As it is rather tedious and boring to check that this is indeed a well-defined natural transformation, it is left as an exercise for the curious (or simply bored) reader. To show that this is an isomorphism, we give an explicit definition for its inverse, which we shall call $\kappa$. To define it we again expand the definition step by step:
 		\begin{align*}
-			\kappa_{P,Q,R}&:\PSF(P, R^Q)\to\PSF(P\times Q, R)\\
+			\kappa_{P,Q,R}&:\Nat(P, R^Q)\to\Nat(P\times Q, R)\\
 			\kappa_{P,Q,R}(\varepsilon)&:P\times Q\to R\\
 			\kappa_{P,Q,R}(\varepsilon)_n&:P(n)\times Q(n)\to R(n)\\
 			\intertext{With $\varepsilon:P\to Q^R$ and $n\in\N_+$ arbitrary. We can again give an explicit expression for the last function:}
@@ -773,8 +776,8 @@
 	\begin{proof}
 		Notice that each $\psi_m(c)$ is simply the filler of the simplicial complex $c:\X(C)\to P$ as defined by Theorem \ref{polyT}, so as a filler it lifts $c$, thus $\psi$ is indeed a componentwise right inverse to $\xi$, which is simply the precomposition with $\iota_C$. To show that $\psi$ is also natural, we simply show that the following diagram commutes
 		\[\begin{tikzcd}
-			\PSF(\X(C),P\circ\M(m))\arrow{rrr}{(\id_P*\M(f))\circ-}\arrow{d}[swap]{\psi_m}&&&\PSF(\X(C),P\circ\M(l))\arrow{d}{\psi_l}\\
-			\PSF(\Y(n),P\circ\M(m))\arrow{rrr}[swap]{(\id_P*\M(f))\circ-}&&&\PSF(\Y(n),P\circ\M(l))
+			\Nat(\X(C),P\circ\M(m))\arrow{rrr}{(\id_P*\M(f))\circ-}\arrow{d}[swap]{\psi_m}&&&\Nat(\X(C),P\circ\M(l))\arrow{d}{\psi_l}\\
+			\Nat(\Y(n),P\circ\M(m))\arrow{rrr}[swap]{(\id_P*\M(f))\circ-}&&&\Nat(\Y(n),P\circ\M(l))
 		\end{tikzcd}\]
 		for every $f:l\to m$. This is the same as saying for every $c:\X(C)\to\M(m)$, the following diagram commutes:
 		\[\begin{tikzcd}
@@ -787,19 +790,19 @@
 	\begin{theorem}\label{PSFCCC}
 		For $P,Q:\Fin_+^\op\to\Set$, define the exponential $Q^P:\Fin_+^\op\to\Set$ as follows
 		\begin{align*}
-			Q^P(n)&:=\PSF(\Y(n)\times P,Q)\\
+			Q^P(n)&:=\Nat(\Y(n)\times P,Q)\\
 			Q^P(f)&:Q^P(n)\to Q^P(m)\quad(\mathrm{for }\ f:m\to n)\\
 			&\quad\qquad\eta\mapsto\eta\circ(\Y(f)\times\id_P)
 		\end{align*}
 		This makes $\PSF$ into a cartesian closed category. In particular, we have the following isomorphism that is natural in $P,Q,R$:
-		\[\iota_{P,Q,R}:\PSF(P\times Q, R)\xrightarrow{\sim}\PSF(P,R^Q)\]
+		\[\iota_{P,Q,R}:\Nat(P\times Q, R)\xrightarrow{\sim}\Nat(P,R^Q)\]
 	\end{theorem}
 	\begin{proof}
 		We start by defining $\iota$. Expanding the definition step by step, here's what we need to define
 		\begin{align*}
-			\iota_{P,Q,R}&:\PSF(P\times Q, R)\to\PSF(P, R^Q)\\
+			\iota_{P,Q,R}&:\Nat(P\times Q, R)\to\Nat(P, R^Q)\\
 			\iota_{P,Q,R}(\eta)&:P\to R^Q\\
-			\iota_{P,Q,R}(\eta)_n&:P(n)\to R^Q(n)=\PSF(\Y(n)\times Q, R)\\
+			\iota_{P,Q,R}(\eta)_n&:P(n)\to R^Q(n)=\Nat(\Y(n)\times Q, R)\\
 			\iota_{P,Q,R}(\eta)_n(x)&:\Y(n)\times Q\to R\\
 			\iota_{P,Q,R}(\eta)_n(x)_m&:\Fin_+(m, n)\times Q(m)\to R(m)
 			\intertext{With $\eta:P\times Q\to R$, $m,n\in\N_+$ and $x\in P(n)$ arbitrary. We can now give an explicit expression for the last function:}
@@ -807,7 +810,7 @@
 		\end{align*}
 		As it is rather tedious and boring to check that this is indeed a well-defined natural transformation, it is left as an exercise for the curious (or simply bored) reader. To show that this is an isomorphism, we give an explicit definition for its inverse, which we shall call $\kappa$. To define it we again expand the definition step by step:
 		\begin{align*}
-			\kappa_{P,Q,R}&:\PSF(P, R^Q)\to\PSF(P\times Q, R)\\
+			\kappa_{P,Q,R}&:\Nat(P, R^Q)\to\Nat(P\times Q, R)\\
 			\kappa_{P,Q,R}(\varepsilon)&:P\times Q\to R\\
 			\kappa_{P,Q,R}(\varepsilon)_n&:P(n)\times Q(n)\to R(n)\\
 			\intertext{With $\varepsilon:P\to Q^R$ and $n\in\N_+$ arbitrary. We can again give an explicit expression for the last function:}
